@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="73368812-24d0-46cb-8236-ee9f0e7d5a63" name="Changes" comment="" />
+    <list default="true" id="73368812-24d0-46cb-8236-ee9f0e7d5a63" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/code/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/code/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/code/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/src/components/Results.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/code/src/components/Results.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/src/components/UserInput.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/code/src/components/UserInput.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/src/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/code/src/index.jsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,13 +44,15 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "debugging",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/Users/jnevin/Projects/react-learning/react-complete-guide-course-resources/code/node_modules/prettier",
+    "settings.editor.selected.configurable": "settings.javascript.prettier",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -61,6 +71,7 @@
       <updated>1700341418700</updated>
       <workItem from="1700341419762" duration="5657000" />
       <workItem from="1700508821517" duration="4338000" />
+      <workItem from="1700514049038" duration="4254000" />
     </task>
     <servers />
   </component>

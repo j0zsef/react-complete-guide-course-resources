@@ -41,6 +41,7 @@ export default function UserInput({ onChange, userInput }) {
           <label>Duration</label>
           <input
             type="number"
+            min="0"
             required
             value={userInput.duration}
             onChange={(event) => onChange('duration', event.target.value)}
