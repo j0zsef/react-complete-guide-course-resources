@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="73368812-24d0-46cb-8236-ee9f0e7d5a63" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/code/src/components/ResultModal.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/src/components/ResultModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/code/src/components/ResultModal.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/src/components/TimerChallenge.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/code/src/components/TimerChallenge.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,7 +69,7 @@
       <workItem from="1700508821517" duration="4338000" />
       <workItem from="1700514049038" duration="9914000" />
       <workItem from="1701097821192" duration="31000" />
-      <workItem from="1701122796736" duration="1719000" />
+      <workItem from="1701122796736" duration="2915000" />
     </task>
     <servers />
   </component>
