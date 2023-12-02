@@ -1,5 +1,5 @@
 import Sidebar from "./components/Sidebar.jsx";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import AddProject from "./components/AddProject.jsx";
 import GetStarted from "./components/GetStarted.jsx";
 
@@ -13,6 +13,13 @@ function App() {
     setSelectedProject(undefined);
   };
 
+  const handleSubmitProject = function (project) {
+    addProjects(function (previousProjects) {
+      return [...previousProjects, project];
+    });
+    setAddProject(false);
+  };
+
   const handleSelectedProject = function (selectedProject) {
     setSelectedProject(selectedProject);
   };
@@ -24,8 +31,7 @@ function App() {
           projects={projects}
           onSelectedProject={handleSelectedProject}
         />
-
-        {showAddProject && <AddProject addProjects={addProjects} />}
+        {showAddProject && <AddProject onSubmitProject={handleSubmitProject} />}
         {selectedProject}
         {!showAddProject && !selectedProject && (
           <GetStarted onAddProject={addProject} />

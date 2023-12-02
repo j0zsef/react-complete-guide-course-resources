@@ -1,4 +1,4 @@
-export default function Sidebar({ onAddProject }) {
+export default function Sidebar({ onAddProject, projects }) {
   return (
     <>
       <aside className="w-1/3 px-8 py-16 bg-stone-900 text-stone-50 md:w-72 rounded-r-xl">
@@ -11,6 +11,14 @@ export default function Sidebar({ onAddProject }) {
         >
           + Add Project
         </button>
+
+        <ul className="p-4 mt-8 rounded-md bg-stone-100">
+          {projects?.map((project) => (
+            <li key={project.id} className="text-stone-600">
+              {project.title}
+            </li>
+          ))}
+        </ul>
       </aside>
     </>
   );
