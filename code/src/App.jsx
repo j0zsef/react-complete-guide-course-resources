@@ -2,15 +2,17 @@ import Sidebar from "./components/Sidebar.jsx";
 import { useState, useRef } from "react";
 import AddProject from "./components/AddProject.jsx";
 import GetStarted from "./components/GetStarted.jsx";
+import Project from "./components/Project.jsx";
 
 function App() {
   const [showAddProject, setAddProject] = useState(false);
+  const [showProject, setProject] = useState(false);
   const [projects, addProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState(undefined);
 
   const addProject = function () {
     setAddProject(true);
-    setSelectedProject(undefined);
+    setProject(false);
   };
 
   const handleSubmitProject = function (project) {
@@ -18,11 +20,16 @@ function App() {
       return [...previousProjects, project];
     });
     setAddProject(false);
+    setProject(true);
   };
 
-  const handleSelectedProject = function (selectedProject) {
-    setSelectedProject(selectedProject);
+  const handleSelectedProject = function (selectedProjectID) {
+    setSelectedProject(function () {
+      return projects.filter((project) => project.id === selectedProjectID)[0];
+    });
   };
+
+  const handleDeleteProject = function () {};
   return (
     <>
       <main className="h-screen my-8 flex gap-8">
@@ -32,7 +39,9 @@ function App() {
           onSelectedProject={handleSelectedProject}
         />
         {showAddProject && <AddProject onSubmitProject={handleSubmitProject} />}
-        {selectedProject}
+        {showProject && (
+          <Project project={selectedProject} onDelete={handleDeleteProject} />
+        )}
         {!showAddProject && !selectedProject && (
           <GetStarted onAddProject={addProject} />
         )}
