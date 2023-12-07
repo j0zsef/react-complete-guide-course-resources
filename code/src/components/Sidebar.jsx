@@ -18,7 +18,7 @@ export default function Sidebar({ onAddProject, projects, onSelectedProject }) {
               <li
                 className="my-4 rounded-md p-4 mt-8 bg-stone-800 hover:bg-stone-700 text-stone-300 hover:text-stone-100"
                 key={project.id}
-                onClick={onSelectedProject(project.id)}
+                onClick={() => onSelectedProject(project.id)}
               >
                 {project.title}
               </li>

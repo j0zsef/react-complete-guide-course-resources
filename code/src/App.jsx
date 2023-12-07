@@ -8,7 +8,7 @@ function App() {
   const [showAddProject, setAddProject] = useState(false);
   const [showProject, setProject] = useState(false);
   const [projects, addProjects] = useState([]);
-  const [selectedProject, setSelectedProject] = useState(undefined);
+  const [selectedProject, setSelectedProject] = useState({});
 
   const addProject = function () {
     setAddProject(true);
