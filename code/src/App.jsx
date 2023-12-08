@@ -6,21 +6,22 @@ import Project from "./components/Project.jsx";
 
 function App() {
   const [showAddProject, setAddProject] = useState(false);
-  const [showProject, setProject] = useState(false);
+  const [showProject, setShowProject] = useState(false);
   const [projects, addProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState({});
 
   const addProject = function () {
+    setShowProject(false);
     setAddProject(true);
-    setProject(false);
   };
 
   const handleSubmitProject = function (project) {
     addProjects(function (previousProjects) {
       return [...previousProjects, project];
     });
-    setAddProject(false);
-    setProject(true);
+    setSelectedProject(project);
+    setAddProject(() => false);
+    setShowProject(() => true);
   };
 
   const handleSelectedProject = function (selectedProjectID) {
@@ -42,7 +43,7 @@ function App() {
         {showProject && (
           <Project project={selectedProject} onDelete={handleDeleteProject} />
         )}
-        {!showAddProject && !selectedProject && (
+        {!showAddProject && !showProject && (
           <GetStarted onAddProject={addProject} />
         )}
       </main>

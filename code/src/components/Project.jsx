@@ -1,14 +1,20 @@
 import { useState } from "react";
-import Task from "./Task.jsx";
+import Task from "./TaskList.jsx";
+import TaskList from "./TaskList.jsx";
 
 export default function Project({ project }) {
+  const [task, setTask] = useState("");
   const [tasks, setTasks] = useState([]);
 
   const addTask = function () {
-    let task = {};
     setTasks(function (previousTasks) {
       return [task, ...previousTasks];
     });
+    setTask("");
+  };
+
+  const handleInput = function (event) {
+    setTask(event.target.value);
   };
 
   return (
@@ -32,7 +38,11 @@ export default function Project({ project }) {
         </header>
         <div>
           <h2 className="text-2xl font-bold text-stone-700 mb-4">Tasks</h2>
-          <input className="w-64 px-2 py-1 rounded-sm bg-stone-200" />
+          <input
+            className="w-64 px-2 py-1 rounded-sm bg-stone-200"
+            onInput={handleInput}
+            value={task}
+          />
           <button
             className="text-stone-700 hover:text-stone-500 mx-4"
             onClick={addTask}
@@ -40,9 +50,7 @@ export default function Project({ project }) {
             Add Task
           </button>
           <div className="backdrop:bg-stone-900/90 p-4 rounded-md shadow-md">
-            {tasks.filter((task) => {
-              return <Task task={task} />;
-            })}
+            <TaskList tasks={tasks} />
           </div>
         </div>
       </div>
