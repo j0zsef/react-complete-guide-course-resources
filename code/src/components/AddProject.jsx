@@ -10,6 +10,7 @@ export default function AddProject({ onSubmitProject }) {
       description: description.current.value,
       dueDate: dueDate.current.value,
       id: Math.random(),
+      tasks: [],
     });
     event.preventDefault();
   };

@@ -1,17 +1,20 @@
-import { useState } from "react";
-import Task from "./TaskList.jsx";
+import {useState} from "react";
 import TaskList from "./TaskList.jsx";
 
-export default function Project({ project }) {
+export default function Project({ project, onDeleteProject }) {
   const [task, setTask] = useState("");
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(project.tasks);
 
   const addTask = function () {
-    setTasks(function (previousTasks) {
-      return [task, ...previousTasks];
-    });
+    project.tasks.push(task);
+    setTasks(task);
     setTask("");
   };
+
+  const onTaskDelete = function (taskIndex) {
+    project.tasks = project.tasks.filter((task, index) => index !== taskIndex);
+    setTasks(() => project.tasks);
+  }
 
   const handleInput = function (event) {
     setTask(event.target.value);
@@ -25,7 +28,7 @@ export default function Project({ project }) {
             <h1 className="text-3xl font-bold text-stone-600">
               {project.title}
             </h1>
-            <button className="text-stone-700 hover:text-red-500 my-4">
+            <button onClick={onDeleteProject} className="text-stone-700 hover:text-red-500 my-4">
               Delete
             </button>
           </div>
@@ -50,7 +53,7 @@ export default function Project({ project }) {
             Add Task
           </button>
           <div className="backdrop:bg-stone-900/90 p-4 rounded-md shadow-md">
-            <TaskList tasks={tasks} />
+            <TaskList tasks={project.tasks} onTaskDelete={onTaskDelete} />
           </div>
         </div>
       </div>

@@ -28,9 +28,17 @@ function App() {
     setSelectedProject(function () {
       return projects.filter((project) => project.id === selectedProjectID)[0];
     });
+    setAddProject(() => false);
+    setShowProject(() => true);
   };
 
-  const handleDeleteProject = function () {};
+  const handleDeleteProject = function () {
+    addProjects(function (previousProjects){
+      return previousProjects.filter((project) => project.id !== selectedProject.id);
+    });
+    setSelectedProject({});
+    addProject();
+  };
   return (
     <>
       <main className="h-screen my-8 flex gap-8">
@@ -41,7 +49,7 @@ function App() {
         />
         {showAddProject && <AddProject onSubmitProject={handleSubmitProject} />}
         {showProject && (
-          <Project project={selectedProject} onDelete={handleDeleteProject} />
+          <Project project={selectedProject} onDeleteProject={handleDeleteProject} />
         )}
         {!showAddProject && !showProject && (
           <GetStarted onAddProject={addProject} />
