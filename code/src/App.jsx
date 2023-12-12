@@ -6,22 +6,24 @@ import Project from "./components/Project.jsx";
 
 function App() {
   const [showAddProject, setAddProject] = useState(false);
-  const [showProject, setShowProject] = useState(false);
   const [projects, addProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState({});
 
-  const addProject = function () {
-    setShowProject(false);
-    setAddProject(true);
+  const handleShowAddProject = function () {
+    setAddProject(() => true);
+    setSelectedProject(() => {});
   };
 
-  const handleSubmitProject = function (project) {
+  const handleAddProject = function (project) {
     addProjects(function (previousProjects) {
       return [...previousProjects, project];
     });
-    setSelectedProject(project);
+    setSelectedProject(() => project);
     setAddProject(() => false);
-    setShowProject(() => true);
+  };
+
+  const handleCancelProject = function () {
+    setAddProject(() => false);
   };
 
   const handleSelectedProject = function (selectedProjectID) {
@@ -29,30 +31,46 @@ function App() {
       return projects.filter((project) => project.id === selectedProjectID)[0];
     });
     setAddProject(() => false);
-    setShowProject(() => true);
   };
 
   const handleDeleteProject = function () {
-    addProjects(function (previousProjects){
-      return previousProjects.filter((project) => project.id !== selectedProject.id);
+    addProjects(function (previousProjects) {
+      return previousProjects.filter(
+        (project) => project.id !== selectedProject.id,
+      );
     });
-    setSelectedProject({});
-    addProject();
+    setSelectedProject(() => {});
   };
+
+  function isObjEmpty(obj) {
+    if (obj === undefined || obj === null) {
+      return true;
+    }
+    return Object.keys(obj).length === 0;
+  }
+
   return (
     <>
       <main className="h-screen my-8 flex gap-8">
         <Sidebar
-          onAddProject={addProject}
+          onAddProject={handleShowAddProject}
           projects={projects}
           onSelectedProject={handleSelectedProject}
         />
-        {showAddProject && <AddProject onSubmitProject={handleSubmitProject} />}
-        {showProject && (
-          <Project project={selectedProject} onDeleteProject={handleDeleteProject} />
+        {showAddProject && (
+          <AddProject
+            onCancelProject={handleCancelProject}
+            onAddProject={handleAddProject}
+          />
         )}
-        {!showAddProject && !showProject && (
-          <GetStarted onAddProject={addProject} />
+        {!isObjEmpty(selectedProject) && (
+          <Project
+            project={selectedProject}
+            onDeleteProject={handleDeleteProject}
+          />
+        )}
+        {!showAddProject && isObjEmpty(selectedProject) && (
+          <GetStarted onAddProject={handleShowAddProject} />
         )}
       </main>
     </>
