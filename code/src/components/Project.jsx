@@ -1,4 +1,4 @@
-import {useState} from "react";
+import { useState } from "react";
 import TaskList from "./TaskList.jsx";
 
 export default function Project({ project, onDeleteProject }) {
@@ -7,16 +7,16 @@ export default function Project({ project, onDeleteProject }) {
 
   const addTask = function () {
     project.tasks.push(task);
-    setTasks(task);
+    setTasks(() => project.tasks);
     setTask("");
   };
 
   const onTaskDelete = function (taskIndex) {
     project.tasks = project.tasks.filter((task, index) => index !== taskIndex);
     setTasks(() => project.tasks);
-  }
+  };
 
-  const handleInput = function (event) {
+  const handleTaskInput = function (event) {
     setTask(event.target.value);
   };
 
@@ -28,7 +28,10 @@ export default function Project({ project, onDeleteProject }) {
             <h1 className="text-3xl font-bold text-stone-600">
               {project.title}
             </h1>
-            <button onClick={onDeleteProject} className="text-stone-700 hover:text-red-500 my-4">
+            <button
+              onClick={onDeleteProject}
+              className="text-stone-700 hover:text-red-500 my-4"
+            >
               Delete
             </button>
           </div>
@@ -43,7 +46,7 @@ export default function Project({ project, onDeleteProject }) {
           <h2 className="text-2xl font-bold text-stone-700 mb-4">Tasks</h2>
           <input
             className="w-64 px-2 py-1 rounded-sm bg-stone-200"
-            onInput={handleInput}
+            onInput={handleTaskInput}
             value={task}
           />
           <button
@@ -52,9 +55,11 @@ export default function Project({ project, onDeleteProject }) {
           >
             Add Task
           </button>
-          <div className="backdrop:bg-stone-900/90 p-4 rounded-md shadow-md">
-            <TaskList tasks={project.tasks} onTaskDelete={onTaskDelete} />
-          </div>
+          {project.tasks.length > 0 && (
+            <div className="backdrop:bg-stone-900/90 p-4 rounded-md shadow-md">
+              <TaskList tasks={project.tasks} onTaskDelete={onTaskDelete} />
+            </div>
+          )}
         </div>
       </div>
     </>
