@@ -1,12 +1,14 @@
 import Quiz from "./components/Quiz.jsx";
-import QuizSummary from "./components/QuizSummary.jsx";
-import questions from "./questions.js";
+import Summary from "./components/Summary.jsx";
+import { QuizContext, QuizContextProvider } from "./store/QuizContext.jsx";
+import { useContext } from "react";
 
 export default function App() {
   return (
     <>
-      <Quiz questions={questions} />
-      <QuizSummary />
+      <QuizContextProvider>
+        <Quiz />
+      </QuizContextProvider>
     </>
   );
 }
