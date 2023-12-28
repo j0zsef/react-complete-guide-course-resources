@@ -5,15 +5,20 @@ import Summary from "./Summary.jsx";
 
 export default function Quiz() {
   const quizCtx = useContext(QuizContext);
-  //need to add some logic here to show the summary once the Quiz is over
+  let showSummary = false;
+  if (quizCtx.currentQuestion.index >= quizCtx.questions.length) {
+    showSummary = true;
+  }
   return (
     <div id="quiz">
-      <Question question={quizCtx.currentQuestion.question} />
-      <Summary
-        skipped={quizCtx.skipped}
-        correct={quizCtx.correct}
-        incorrect={quizCtx.incorrect}
-      />
+      {!showSummary && <Question question={quizCtx.currentQuestion.question} />}
+      {showSummary && (
+        <Summary
+          skipped={quizCtx.skipped}
+          correct={quizCtx.correct}
+          incorrect={quizCtx.incorrect}
+        />
+      )}
     </div>
   );
 }

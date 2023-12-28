@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useState } from "react";
 import questions from "../questions.js";
 
 export const QuizContext = createContext({
@@ -7,6 +7,7 @@ export const QuizContext = createContext({
     index: 0,
   },
   submitAnswer: () => {},
+  questions: [],
   skipped: 0,
   correct: 0,
   incorrect: 0,
@@ -14,10 +15,12 @@ export const QuizContext = createContext({
 
 function quizReducer(state, action) {
   if (action.type === "SUBMIT_ANSWER") {
-    state.index++;
+    let index = state.index;
+    index++;
+    let question = questions[index];
     return {
-      index: state.currentQuestionIndex,
-      question: questions[state.currentQuestionIndex],
+      index,
+      question,
     };
   }
   return state;
@@ -38,6 +41,7 @@ export function QuizContextProvider({ children }) {
   const ctxValue = {
     currentQuestion: currentQuestionState,
     submitAnswer: handleSubmitAnswer,
+    questions: questions,
     skipped: 0,
     correct: 0,
     incorrect: 0,

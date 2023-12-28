@@ -5,12 +5,11 @@ import { QuizContext } from "../store/QuizContext.jsx";
 export default function Question({ question }) {
   const quizCtx = useContext(QuizContext);
   const handleSubmitAnswer = function (answer) {
-    //increment skip if skip
-    //increment incorrect if incorrect
-    //increment correct if correct
+    //update skipped
+    //update incorrect
+    //update correct
     quizCtx.submitAnswer();
   };
-
   return (
     <div key={question.id} id="question">
       <h2>{question.text}</h2>
