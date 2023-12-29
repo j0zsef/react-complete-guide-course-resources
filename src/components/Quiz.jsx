@@ -12,13 +12,7 @@ export default function Quiz() {
   return (
     <div id="quiz">
       {!showSummary && <Question question={quizCtx.currentQuestion.question} />}
-      {showSummary && (
-        <Summary
-          skipped={quizCtx.skipped}
-          correct={quizCtx.correct}
-          incorrect={quizCtx.incorrect}
-        />
-      )}
+      {showSummary && <Summary answers={quizCtx.answers} />}
     </div>
   );
 }

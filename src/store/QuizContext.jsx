@@ -6,15 +6,14 @@ export const QuizContext = createContext({
     question: {},
     index: 0,
   },
+  nextQuestion: () => {},
   submitAnswer: () => {},
   questions: [],
-  skipped: 0,
-  correct: 0,
-  incorrect: 0,
+  answers: [],
 });
 
 function quizReducer(state, action) {
-  if (action.type === "SUBMIT_ANSWER") {
+  if (action.type === "NEXT_QUESTION") {
     let index = state.index;
     index++;
     let question = questions[index];
@@ -23,28 +22,51 @@ function quizReducer(state, action) {
       question,
     };
   }
+
+  if (action.type === "SUBMIT_ANSWER") {
+    let answers = [...state];
+    let newAnswer = action.payload;
+    answers.push(newAnswer);
+    return answers;
+  }
+
   return state;
 }
 
 export function QuizContextProvider({ children }) {
-  const [currentQuestionState, quizDispatch] = useReducer(quizReducer, {
-    question: questions[0],
-    index: 0,
-  });
+  const [currentQuestionState, currentQuestioDispatch] = useReducer(
+    quizReducer,
+    {
+      question: questions[0],
+      index: 0,
+    },
+  );
 
-  function handleSubmitAnswer() {
-    quizDispatch({
+  function handleNextQuestion() {
+    currentQuestioDispatch({
+      type: "NEXT_QUESTION",
+    });
+  }
+
+  const [answersState, answersDispatch] = useReducer(quizReducer, []);
+
+  function handleSubmitAnswer(question, answer, correct) {
+    answersDispatch({
       type: "SUBMIT_ANSWER",
+      payload: {
+        question,
+        answer,
+        correct,
+      },
     });
   }
 
   const ctxValue = {
     currentQuestion: currentQuestionState,
+    nextQuestion: handleNextQuestion,
     submitAnswer: handleSubmitAnswer,
     questions: questions,
-    skipped: 0,
-    correct: 0,
-    incorrect: 0,
+    answers: answersState,
   };
 
   return (
