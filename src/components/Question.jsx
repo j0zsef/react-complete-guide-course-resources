@@ -14,6 +14,7 @@ export default function Question({ question }) {
       quizCtx.submitAnswer(question.text, answer, false);
     }
 
+    // need to figure out why skipped isn't showing on summary.
     quizCtx.nextQuestion();
     setRemainingTime(maxTime);
   };

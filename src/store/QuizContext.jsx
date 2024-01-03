@@ -34,7 +34,7 @@ function quizReducer(state, action) {
 }
 
 export function QuizContextProvider({ children }) {
-  const [currentQuestionState, currentQuestioDispatch] = useReducer(
+  const [currentQuestionState, currentQuestionDispatch] = useReducer(
     quizReducer,
     {
       question: questions[0],
@@ -43,7 +43,7 @@ export function QuizContextProvider({ children }) {
   );
 
   function handleNextQuestion() {
-    currentQuestioDispatch({
+    currentQuestionDispatch({
       type: "NEXT_QUESTION",
     });
   }

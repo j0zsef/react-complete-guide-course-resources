@@ -2,7 +2,8 @@ import completeIcon from "../assets/quiz-complete.png";
 
 export default function Summary({ answers }) {
   const skippedCount =
-    (answers.filter((answer) => answer === "").length / answers.length) * 100;
+    (answers.filter((answer) => answer.answer === "").length / answers.length) *
+    100;
   const correctCount =
     (answers.filter((answer) => answer.answer !== "" && answer.correct).length /
       answers.length) *
@@ -37,7 +38,7 @@ export default function Summary({ answers }) {
               {index + 1}
               <div className="question">{answer.question}</div>
               {answer.answer === "" && (
-                <div className="user-answer skipped">{answer.answer}</div>
+                <div className="user-answer skipped">SKIPPED</div>
               )}
               {answer.answer !== "" && answer.correct && (
                 <div className="user-answer correct">{answer.answer}</div>
