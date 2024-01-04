@@ -9,7 +9,7 @@ export default [
       "A library used for building mobile applications only.",
     ],
     correctAnswer:
-      "A library to build user interfaces with help of declarative code",
+      "A library to build user interfaces with help of declarative code.",
   },
   {
     id: "q2",
@@ -20,7 +20,8 @@ export default [
       "Handling errors within the application.",
       "Part of the Redux library for managing global state.",
     ],
-    correctAnswer: "Creating responsive layouts in React applications.",
+    correctAnswer:
+      "Enabling the use of state and other React features in functional components.",
   },
   {
     id: "q3",
@@ -43,7 +44,8 @@ export default [
       "By creating a file with a .jsx extension.",
       'By using the "new" keyword followed by the component name.',
     ],
-    correctAnswer: "By creating a file with a .jsx extension.",
+    correctAnswer:
+      "By defining a JavaScript function that returns a renderable value.",
   },
   {
     id: "q5",

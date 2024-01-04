@@ -1,10 +1,10 @@
-export default function Answer({ answer, onSubmitAnswer, index }) {
+export default function Answer({ answer, onSubmitAnswer }) {
   const handleSubmitAnswer = function () {
     onSubmitAnswer(answer);
   };
 
   return (
-    <li key={index} className="answer">
+    <li className="answer">
       <button onClick={handleSubmitAnswer}>{answer}</button>
     </li>
   );

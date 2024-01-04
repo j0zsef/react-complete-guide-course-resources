@@ -18,33 +18,33 @@ export default function Summary({ answers }) {
       <img src={completeIcon} alt="" />
       <h2>QUIZ COMPLETED!</h2>
       <div id="summary-stats">
-        <div id="skipped">
-          <div className="number">{Math.round(skippedCount)}%</div>
-          <div className="text">SKIPPED</div>
-        </div>
-        <div id="correct">
-          <div className="number">{Math.round(correctCount)}%</div>
-          <div className="text">ANSWERED CORRECTLY</div>
-        </div>
-        <div id="incorrect">
-          <div className="number">{Math.round(incorrectCount)}%</div>
+        <p id="skipped">
+          <span className="number">{Math.round(skippedCount)}%</span>
+          <span className="text">SKIPPED</span>
+        </p>
+        <p id="correct">
+          <span className="number">{Math.round(correctCount)}%</span>
+          <span className="text">ANSWERED CORRECTLY</span>
+        </p>
+        <p id="incorrect">
+          <span className="number">{Math.round(incorrectCount)}%</span>
           <div className="text">ANSWERED INCORRECTLY</div>
-        </div>
+        </p>
       </div>
       <div id="answers">
         <ol>
           {answers.map((answer, index) => (
             <li key={index}>
-              {index + 1}
-              <div className="question">{answer.question}</div>
+              <h3>{index + 1}</h3>
+              <p className="question">{answer.question}</p>
               {answer.answer === "" && (
-                <div className="user-answer skipped">SKIPPED</div>
+                <p className="user-answer skipped">SKIPPED</p>
               )}
               {answer.answer !== "" && answer.correct && (
-                <div className="user-answer correct">{answer.answer}</div>
+                <p className="user-answer correct">{answer.answer}</p>
               )}
               {answer.answer !== "" && !answer.correct && (
-                <div className="user-answer wrong">{answer.answer}</div>
+                <p className="user-answer wrong">{answer.answer}</p>
               )}
             </li>
           ))}

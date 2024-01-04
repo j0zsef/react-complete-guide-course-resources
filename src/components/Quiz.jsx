@@ -5,14 +5,16 @@ import Summary from "./Summary.jsx";
 
 export default function Quiz() {
   const quizCtx = useContext(QuizContext);
-  let showSummary = false;
+  let content;
   if (quizCtx.currentQuestion.index >= quizCtx.questions.length) {
-    showSummary = true;
+    content = <Summary answers={quizCtx.answers} />;
+  } else {
+    content = (
+      <Question
+        key={quizCtx.currentQuestion.index}
+        question={quizCtx.currentQuestion.question}
+      />
+    );
   }
-  return (
-    <div id="quiz">
-      {!showSummary && <Question question={quizCtx.currentQuestion.question} />}
-      {showSummary && <Summary answers={quizCtx.answers} />}
-    </div>
-  );
+  return <div id="quiz">{content}</div>;
 }
