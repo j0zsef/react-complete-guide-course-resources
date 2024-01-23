@@ -1,10 +1,4 @@
-import {
-  forwardRef,
-  useImperativeHandle,
-  useRef,
-  useContext,
-  useState,
-} from "react";
+import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import Cart from "./Cart";
 import Checkout from "./Checkout.jsx";
@@ -24,11 +18,20 @@ const CartModal = forwardRef(function Modal({}, ref) {
 
   const handleCheckout = function (event) {
     event.preventDefault();
-    setShowCheckout(() => true);
+
+    if (event.nativeEvent.submitter.value === "close") {
+      dialog.current.close();
+    } else {
+      setShowCheckout(() => true);
+    }
+  };
+
+  const handleClose = function () {
+    dialog.current.close();
   };
 
   if (showCheckout) {
-    content = <Checkout />;
+    content = <Checkout onClose={handleClose} />;
   } else {
     content = <Cart onCheckout={handleCheckout} />;
   }

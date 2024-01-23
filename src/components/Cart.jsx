@@ -9,19 +9,27 @@ export default function Cart({ onCheckout }) {
   );
   const formattedTotalPrice = `$${totalPrice.toFixed(2)}`;
 
-  let modalActions = <button className="button">Close</button>;
+  let modalActions = (
+    <button type="submit" value="close" className="button">
+      Close
+    </button>
+  );
 
   if (cartCtx.items.length > 0) {
     modalActions = (
       <>
-        <button className="button">Close</button>
-        <button className="button">Checkout</button>
+        <button type="submit" value="close" className="button">
+          Close
+        </button>
+        <button type="submit" value="submit" className="button">
+          Checkout
+        </button>
       </>
     );
   }
 
   return (
-    <form onSubmit={onCheckout} method="dialog">
+    <form onSubmit={onCheckout}>
       <h2>Your Cart</h2>
       {cartCtx.items.length === 0 && <p>No items in cart!</p>}
       {cartCtx.items.length > 0 && (
@@ -37,12 +45,14 @@ export default function Cart({ onCheckout }) {
                 </div>
                 <div className="cart-item-actions">
                   <button
+                    type="button"
                     onClick={() => cartCtx.updateItemQuantity(item.id, -1)}
                   >
                     -
                   </button>
                   <span>{item.quantity}</span>
                   <button
+                    type="button"
                     onClick={() => cartCtx.updateItemQuantity(item.id, 1)}
                   >
                     +
