@@ -8,7 +8,9 @@ export default function Meals() {
       try {
         const data = await fetch("http://localhost:3000/meals");
         const parsedData = await data.json();
-        const mealItems = parsedData.map((meal) => <MealItem {...meal} />);
+        const mealItems = parsedData.map((meal) => (
+          <MealItem key={meal.id} {...meal} />
+        ));
         setMeals(() => mealItems);
       } catch (e) {
         throw e;
