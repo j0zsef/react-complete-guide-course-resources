@@ -18,10 +18,12 @@ export default function Header() {
         <img src={logo} alt="yep" />
         <h1>REACTFOOD</h1>
       </div>
-      <CartModal ref={modal} />
-      <button className="button" onClick={handleOpenCartClick}>
-        Cart ({cartQuantity})
-      </button>
+      <nav>
+        <CartModal ref={modal} />
+        <button className="button" onClick={handleOpenCartClick}>
+          Cart ({cartQuantity})
+        </button>
+      </nav>
     </header>
   );
 }

@@ -7,14 +7,20 @@ export default function MealItem({ id, image, name, price, description }) {
     cartCtx.addItemToCart(id, name, parseFloat(price));
   };
   return (
-    <article className="meal-item">
-      <img src={`http://localhost:3000/${image}`} />
-      <h3>{name}</h3>
-      <div className="meal-item-price">${price}</div>
-      <div className="meal-item-description">{description}</div>
-      <button className="meal-item-actions button" onClick={addToCart}>
-        Add To Cart
-      </button>
-    </article>
+    <li className="meal-item">
+      <article>
+        <img src={`http://localhost:3000/${image}`} alt="poop" />
+        <div>
+          <h3>{name}</h3>
+          <p className="meal-item-price">${price}</p>
+          <p className="meal-item-description">{description}</p>
+        </div>
+        <p className="meal-item-actions">
+          <button className="button" onClick={addToCart}>
+            Add To Cart
+          </button>
+        </p>
+      </article>
+    </li>
   );
 }

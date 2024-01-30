@@ -8,6 +8,9 @@ export default function Meals() {
       try {
         const data = await fetch("http://localhost:3000/meals");
         const parsedData = await data.json();
+        if (!data.ok) {
+          throw "Couldn't fetch meals!";
+        }
         const mealItems = parsedData.map((meal) => (
           <MealItem key={meal.id} {...meal} />
         ));
@@ -19,5 +22,5 @@ export default function Meals() {
 
     fetchMeals();
   }, []);
-  return <div id="meals">{meals}</div>;
+  return <ul id="meals">{meals}</ul>;
 }

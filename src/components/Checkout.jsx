@@ -25,11 +25,11 @@ export default function Checkout({ onClose }) {
       },
     };
 
-    async function sendItems() {
+    async function sendItems(itemRequest) {
       try {
         const response = await fetch("http://localhost:3000/orders", {
           method: "POST",
-          body: JSON.stringify(request),
+          body: JSON.stringify(itemRequest),
           headers: {
             "Content-Type": "application/json",
           },
@@ -49,7 +49,7 @@ export default function Checkout({ onClose }) {
         event.preventDefault();
       }
     }
-    sendItems();
+    sendItems(request);
   };
 
   return (
@@ -78,14 +78,14 @@ export default function Checkout({ onClose }) {
           <input id="city" name="city" required />
         </div>
       </div>
-      <div className="modal-actions">
+      <p className="modal-actions">
         <button value="close" className="button">
           Close
         </button>
         <button value="submit" className="button">
           Submit Order
         </button>
-      </div>
+      </p>
     </form>
   );
 }

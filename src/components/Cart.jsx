@@ -66,7 +66,7 @@ export default function Cart({ onCheckout }) {
       <p className="cart-total">
         Cart Total: <strong>{formattedTotalPrice}</strong>
       </p>
-      <div className="modal-actions">{modalActions}</div>
+      <p className="modal-actions">{modalActions}</p>
     </form>
   );
 }
