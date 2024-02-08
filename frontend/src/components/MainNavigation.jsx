@@ -1,4 +1,5 @@
 import classes from './MainNavigation.module.css';
+import {NavLink} from "react-router-dom";
 
 function MainNavigation() {
   return (
@@ -6,10 +7,10 @@ function MainNavigation() {
       <nav>
         <ul className={classes.list}>
           <li>
-            <a>Home</a>
+            <NavLink to="" activeClassName={classes.active}>Home</NavLink>
           </li>
           <li>
-            <a>Events</a>
+            <NavLink to="events" activeClassName={classes.active}>Events</NavLink>
           </li>
         </ul>
       </nav>
