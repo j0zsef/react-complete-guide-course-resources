@@ -1,16 +1,18 @@
 import classes from './MainNavigation.module.css';
-import {NavLink} from "react-router-dom";
+import {NavLink, useLocation} from "react-router-dom";
 
 function MainNavigation() {
+  const location = useLocation();
+
   return (
     <header className={classes.header}>
       <nav>
         <ul className={classes.list}>
           <li>
-            <NavLink to="" activeClassName={classes.active}>Home</NavLink>
+            <NavLink to="" className={location.pathname === "" ? classes.active : ""}>Home</NavLink>
           </li>
           <li>
-            <NavLink to="events" activeClassName={classes.active}>Events</NavLink>
+            <NavLink to="events" className={location.pathname === "events" ? classes.active : ""}>Events</NavLink>
           </li>
         </ul>
       </nav>
