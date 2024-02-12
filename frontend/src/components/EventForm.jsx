@@ -8,12 +8,12 @@ function EventForm({ method, event }) {
     navigate('..');
   }
 
-  function handleOnSubmit(event) {
+  function handleOnSubmit(submitEvent) {
       if (method === 'post') {
-        const title = event.target.title.value;
-        const image = event.target.image.value;
-        const date = event.target.date.value;
-        const description = event.target.description.value;
+        const title = submitEvent.target.title.value;
+        const image = submitEvent.target.image.value;
+        const date = submitEvent.target.date.value;
+        const description = submitEvent.target.description.value;
         const newEvent = {
           title,
           image,
@@ -27,13 +27,15 @@ function EventForm({ method, event }) {
           },
           body: JSON.stringify(newEvent),
         }).then(() => {
-          navigate('/events');
+          navigate('..');
+        }).catch((error) => {
+          console.error('Post Error:', error);
         });
       } else if (method === 'patch') {
-        const title = event.target.title.value;
-        const image = event.target.image.value;
-        const date = event.target.date.value;
-        const description = event.target.description.value;
+        const title = submitEvent.target.title.value;
+        const image = submitEvent.target.image.value;
+        const date = submitEvent.target.date.value;
+        const description = submitEvent.target.description.value;
         const updatedEvent = {
           title,
           image,
@@ -47,7 +49,9 @@ function EventForm({ method, event }) {
           },
           body: JSON.stringify(updatedEvent),
         }).then(() => {
-          navigate(`/events/${event.id}`);
+          navigate(`events/${event.id}`);
+        }).catch((error) => {
+            console.error('Patch Error:', error);
         });
       }
   }

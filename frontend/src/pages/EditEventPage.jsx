@@ -4,7 +4,7 @@ import EventForm from "../components/EventForm";
 
 const EditEventPage = () => {
     const [event, setEvent] = useState({});
-    const { id } = useParams(); // Get the id from the URL
+    const { id } = useParams();
 
     useEffect(() => {
         async function fetchEvent() {
@@ -21,7 +21,7 @@ const EditEventPage = () => {
     return (
         <div>
         <h1 style={{textAlign: 'center'}}>Edit Event</h1>
-        {event && <EventForm method={'patch'} event={event} />}
+        {event && <EventForm method='patch' event={event} />}
         </div>
     );
 }
