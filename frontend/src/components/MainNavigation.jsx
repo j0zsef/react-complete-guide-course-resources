@@ -1,4 +1,4 @@
-import classes from './MainNavigation.module.css';
+import classes from "./MainNavigation.module.css";
 import {NavLink, useLocation} from "react-router-dom";
 
 function MainNavigation() {

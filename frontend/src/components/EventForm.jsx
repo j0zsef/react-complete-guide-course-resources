@@ -1,15 +1,15 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
-import classes from './EventForm.module.css';
+import classes from "./EventForm.module.css";
 
 function EventForm({ method, event }) {
   const navigate = useNavigate();
   function cancelHandler() {
-    navigate('..');
+    navigate("..");
   }
 
   function handleOnSubmit(submitEvent) {
-      if (method === 'post') {
+      if (method === "post") {
         const title = submitEvent.target.title.value;
         const image = submitEvent.target.image.value;
         const date = submitEvent.target.date.value;
@@ -20,18 +20,18 @@ function EventForm({ method, event }) {
           date,
           description,
         };
-        fetch('http://localhost:8080/events', {
-          method: 'POST',
+        fetch("http://localhost:8080/events", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(newEvent),
         }).then(() => {
-          navigate('..');
+          navigate("..");
         }).catch((error) => {
-          console.error('Post Error:', error);
+          console.error("Post Error:", error);
         });
-      } else if (method === 'patch') {
+      } else if (method === "patch") {
         const title = submitEvent.target.title.value;
         const image = submitEvent.target.image.value;
         const date = submitEvent.target.date.value;
@@ -43,15 +43,15 @@ function EventForm({ method, event }) {
           description,
         };
         fetch(`http://localhost:8080/events/${event.id}`, {
-          method: 'PATCH',
+          method: "PATCH",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(updatedEvent),
         }).then(() => {
           navigate(`events/${event.id}`);
         }).catch((error) => {
-            console.error('Patch Error:', error);
+            console.error("Patch Error:", error);
         });
       }
   }

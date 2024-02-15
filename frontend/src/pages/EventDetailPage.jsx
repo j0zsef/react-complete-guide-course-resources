@@ -10,7 +10,7 @@ const EventDetailPage = () => {
         async function fetchEvent() {
             const response = await fetch(`http://localhost:8080/events/${id}`);
             if (!response.ok){
-                throw new Error('Something went wrong!');
+                throw new Error("Something went wrong!");
             }
             const data = await response.json();
             setEvent(data.event);
@@ -20,10 +20,10 @@ const EventDetailPage = () => {
     }, [id]);
     return (
         <div>
-            {event && <h1 style={{textAlign: 'center'}}>Event Detail {event.id} Page</h1>}
+            {event && <h1 style={{textAlign: "center"}}>Event Detail {event.id} Page</h1>}
             {event && <EventItem event={event} />}
         </div>
     );
-}
+};
 
 export default EventDetailPage;

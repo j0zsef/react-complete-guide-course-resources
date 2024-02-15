@@ -5,9 +5,9 @@ const EventsPage = () => {
     const [events, setEvents] = useState([]);
     useEffect(() => {
         async function fetchEvents() {
-            const response = await fetch('http://localhost:8080/events');
+            const response = await fetch("http://localhost:8080/events");
             if (!response.ok){
-                throw new Error('Something went wrong!');
+                throw new Error("Something went wrong!");
             }
             const data = await response.json();
             setEvents(data.events);
@@ -18,10 +18,10 @@ const EventsPage = () => {
 
     return (
         <div>
-        <h1 style={{textAlign: 'center'}}>Events</h1>
+        <h1 style={{textAlign: "center"}}>Events</h1>
         <EventsList events={events} />
         </div>
     );
-}
+};
 
 export default EventsPage;

@@ -1,4 +1,4 @@
-import classes from './EventsNavigation.module.css';
+import classes from "./EventsNavigation.module.css";
 import {NavLink, useLocation} from "react-router-dom";
 
 function EventsNavigation() {
