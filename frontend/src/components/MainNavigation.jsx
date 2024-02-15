@@ -9,10 +9,10 @@ function MainNavigation() {
       <nav>
         <ul className={classes.list}>
           <li>
-            <NavLink to="" className={location.pathname === "" ? classes.active : ""}>Home</NavLink>
+            <NavLink to="" className={location.pathname === "" ? classes.active : undefined} end>Home</NavLink>
           </li>
           <li>
-            <NavLink to="events" className={location.pathname === "events" ? classes.active : ""}>Events</NavLink>
+            <NavLink to="events" className={location.pathname === "events" ? classes.active : undefined}>Events</NavLink>
           </li>
         </ul>
       </nav>

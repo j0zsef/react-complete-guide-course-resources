@@ -10,7 +10,7 @@ const EditEventPage = () => {
         async function fetchEvent() {
             const response = await fetch(`http://localhost:8080/events/${id}`);
             if (!response.ok){
-                throw new Error('Something went wrong!');
+                throw new Error("Something went wrong!");
             }
             const data = await response.json();
             setEvent(data.event);
@@ -20,10 +20,10 @@ const EditEventPage = () => {
     }, [id]);
     return (
         <div>
-        <h1 style={{textAlign: 'center'}}>Edit Event</h1>
+        <h1 style={{textAlign: "center"}}>Edit Event</h1>
         {event && <EventForm method='patch' event={event} />}
         </div>
     );
-}
+};
 
 export default EditEventPage;

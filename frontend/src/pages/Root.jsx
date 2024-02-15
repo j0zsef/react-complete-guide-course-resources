@@ -3,9 +3,11 @@ import MainNavigation from "../components/MainNavigation";
 
 const Root = () => {
     return <>
-        <MainNavigation />
-        <Outlet />
-    </>
-}
+        <MainNavigation/>
+        <main>
+            <Outlet/>
+        </main>
+    </>;
+};
 
 export default Root;

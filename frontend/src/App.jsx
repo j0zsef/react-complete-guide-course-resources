@@ -9,8 +9,8 @@ import EventsRoot from "./pages/EventsRoot";
 
 const router = createBrowserRouter([
   {path: "/", element: <Root/>, children: [
-      { path: "", element: <HomePage />},
-      {path: "events", element: <EventsRoot/>, children: [
+      { index: true, element: <HomePage />},
+      { path: "events", element: <EventsRoot/>, children: [
               { path: "", element: <EventsPage />},
               { path: ":id", element: <EventDetailPage />},
               { path: "new", element: <NewEventPage />},
