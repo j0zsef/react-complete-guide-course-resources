@@ -1,29 +1,23 @@
 import EventItem from "../components/EventItem";
-import {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import {json, useRouteLoaderData} from "react-router-dom";
 
 const EventDetailPage = () => {
-    const [event, setEvent] = useState({});
-    const { id } = useParams(); // Get the id from the URL
-
-    useEffect(() => {
-        async function fetchEvent() {
-            const response = await fetch(`http://localhost:8080/events/${id}`);
-            if (!response.ok){
-                throw new Error("Something went wrong!");
-            }
-            const data = await response.json();
-            setEvent(data.event);
-        }
-
-        fetchEvent();
-    }, [id]);
+    const loaderData = useRouteLoaderData("event-detail");
+    const event = loaderData.event;
     return (
         <div>
-            {event && <h1 style={{textAlign: "center"}}>Event Detail {event.id} Page</h1>}
-            {event && <EventItem event={event} />}
+            <h1 style={{textAlign: "center"}}>Event Detail {event.id} Page</h1>
+            <EventItem event={event} />
         </div>
     );
 };
 
 export default EventDetailPage;
+
+export async function eventDetailsLoader({params}) {
+    const response = await fetch(`http://localhost:8080/events/${params.id}`);
+    if (!response.ok){
+        throw json({message: "Failed to fetch event details!"}, {status: 500});
+    }
+    return response;
+}
