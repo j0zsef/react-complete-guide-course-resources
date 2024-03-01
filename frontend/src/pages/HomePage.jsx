@@ -1,8 +1,8 @@
+import PageContent from "../components/PageContent";
+
 const HomePage = () => {
   return (
-    <div>
-      <h1 style={{textAlign: "center"}}>Home Page</h1>
-    </div>
+      <PageContent title="Home Page" />
   );
 };
 

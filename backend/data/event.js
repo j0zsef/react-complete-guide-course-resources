@@ -18,6 +18,7 @@ async function getAll() {
   if (!storedData.events) {
     throw new NotFoundError('Could not find any events.');
   }
+
   return storedData.events;
 }
 

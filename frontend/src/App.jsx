@@ -8,6 +8,7 @@ import EditEventPage from "./pages/EditEventPage";
 import EventsRoot from "./pages/EventsRoot";
 import ErrorPage from "./pages/Error";
 import {newEventLoader} from "./components/EventForm";
+import NewsletterPage, {newsletterAction} from "./pages/Newsletter";
 
 const router = createBrowserRouter([
   {path: "/", element: <Root/>, errorElement: <ErrorPage/>, children: [
@@ -19,7 +20,12 @@ const router = createBrowserRouter([
                 { path: "edit", element: <EditEventPage />, action: newEventLoader},
           ]},
           { path: "new", element: <NewEventPage />, action: newEventLoader},
-      ]}
+      ]},
+      {
+          path: "newsletter",
+          element: <NewsletterPage />,
+          action: newsletterAction,
+      },
     ],
   }]);
 

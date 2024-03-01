@@ -1,14 +1,14 @@
 import EventItem from "../components/EventItem";
 import {json, useRouteLoaderData} from "react-router-dom";
+import PageContent from "../components/PageContent";
 
 const EventDetailPage = () => {
     const loaderData = useRouteLoaderData("event-detail");
     const event = loaderData.event;
     return (
-        <div>
-            <h1 style={{textAlign: "center"}}>Event Detail {event.id} Page</h1>
+        <PageContent title={`Event Detail ${event.id} Page`}>
             <EventItem event={event} />
-        </div>
+        </PageContent>
     );
 };
 
