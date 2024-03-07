@@ -4,10 +4,11 @@ import {
   useNavigation,
   useActionData,
   json,
-  redirect
+  redirect,
 } from 'react-router-dom';
 
 import classes from './EventForm.module.css';
+import { getAuthToken } from '../util/auth';
 
 function EventForm({ method, event }) {
   const data = useActionData();
@@ -73,7 +74,7 @@ function EventForm({ method, event }) {
         <button type="button" onClick={cancelHandler} disabled={isSubmitting}>
           Cancel
         </button>
-        <button disabled={isSubmitting}>
+        <button type="submit" disabled={isSubmitting}>
           {isSubmitting ? 'Submitting...' : 'Save'}
         </button>
       </div>
@@ -84,7 +85,7 @@ function EventForm({ method, event }) {
 export default EventForm;
 
 export async function action({ request, params }) {
-  const method = request.method;
+  const { method } = request;
   const data = await request.formData();
 
   const eventData = {
@@ -97,14 +98,15 @@ export async function action({ request, params }) {
   let url = 'http://localhost:8080/events';
 
   if (method === 'PATCH') {
-    const eventId = params.eventId;
-    url = 'http://localhost:8080/events/' + eventId;
+    const { eventId } = params;
+    url = `http://localhost:8080/events/${eventId}`;
   }
 
   const response = await fetch(url, {
-    method: method,
+    method,
     headers: {
       'Content-Type': 'application/json',
+      Authorization: `Bearer ${getAuthToken()}`,
     },
     body: JSON.stringify(eventData),
   });
@@ -119,4 +121,3 @@ export async function action({ request, params }) {
 
   return redirect('/events');
 }
-
