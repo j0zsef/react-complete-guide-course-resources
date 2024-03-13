@@ -1,5 +1,6 @@
 import classes from './PostItem.module.css';
 
+// eslint-disable-next-line react/prop-types
 function PostItem({ post }) {
   return (
     <article className={classes.item}>
