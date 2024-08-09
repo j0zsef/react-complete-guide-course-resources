@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import Todo from './models/todo';
+import ToDos from './components/ToDos';
+import NewTodo from './components/NewTodo';
 
-function App() {
+const App = () => {
+  // change this to context API to avoid prop drilling
+  const [todos, setTodos] = useState<Todo[]>([
+    new Todo(1, 'Learn React'),
+    new Todo(2, 'Learn TypeScript'),
+  ]);
+  const newTodoHandler = (todo: string) => {
+    const id = todos.length + 1;
+    setTodos((prevState) => prevState.concat(new Todo(id, todo)));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <NewTodo onAddToDo={newTodoHandler} />
+      <ToDos items={todos} />
     </div>
   );
-}
+};
 
 export default App;
