@@ -1,22 +1,18 @@
-import React from 'react';
-import Todo from '../models/todo';
+import React, { useContext } from 'react';
+import { TodoContext } from '../store/todo-context';
 import ToDoItem from './ToDoItem';
 import classes from './Todos.module.css';
 
-type ToDosT = React.FC<{ items: Todo[] }>;
+type ToDosT = React.FC;
 
-const ToDos: ToDosT = ({ items }) => {
-
-  const removeToDoHandler = (todo: Todo): void => {
-    items = items.filter((item) => item.id !== todo.id);
-  }
-
+const ToDos: ToDosT = () => {
+  const todoCtx = useContext(TodoContext);
 
   return (
     <ul className={classes.todos}>
       {
-        items.map((item) => (
-          <ToDoItem todoItem={item} onClick={() => removeToDoHandler(item)} />
+        todoCtx?.todos.map((item) => (
+          <ToDoItem todoItem={item} />
         ))
       }
     </ul>
